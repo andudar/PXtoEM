@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
+<head>
+	<title>Converter PXtoEM</title>
+	<link type="text/css"  rel="stylesheet" href="style/style.css"></link>
+</head>
 
-  <body>
+<body>
+	<div class="calculator">
     <p>Base px</p>
     <input type="text" id="base-px" placeholder="Base px">
     <div class="your-numbers">
@@ -21,66 +22,45 @@
     </div>
     <button id="button">CONVERT</button>
     <p>Your equivalent <span class="set-title">..</span></p>
-    <input type="text" id="get" placholder="">
+    <div id="get"></div>
     <input class="clear" type="button" value="CLEAR">
-    
-    <script>
-      button.onclick = function(){
-        var base = parseInt(document.getElementById('base-px').value);
-        var px = parseInt(document.getElementById('your-px').value);
-        var em = document.getElementById('your-em').value;
-        var title = document.getElementsByClassName('set-title')[0];
-        
-        var result = document.getElementById('get');
-        var yourResult;
-        if(px && !em){
-          title.innerHTML = 'em is';
-          yourResult = px/(base/100)/100 || "please, enter smth";
-        }else if(em && !px){
-          title.innerHTML = 'px is';
-          yourResult = base*em;
-        }else if(!px && !em){
-          alert("Please, enter smth");
-          return;
-        }else{
-          alert("At first, you have to clear fields");
-          return;
-        }
-        result.value = yourResult;
+  </div>
+  <script>
+    button.onclick = function() {
+      var base = parseInt(document.getElementById('base-px').value);
+      var px = parseInt(document.getElementById('your-px').value);
+      var em = document.getElementById('your-em').value;
+      var title = document.getElementsByClassName('set-title')[0];
+
+      var result = document.getElementById('get');
+      var yourResult;
+      if (px && !em) {
+        title.innerHTML = 'em is';
+        yourResult = px / (base / 100) / 100 || "please, enter smth";
+      } else if (em && !px) {
+        title.innerHTML = 'px is';
+        yourResult = base * em;
+      } else if (!px && !em) {
+        alert("Please, enter smth");
+        return;
+      } else {
+        alert("At first, you have to clear fields");
+        return;
       }
-      
-      var clear = document.getElementsByClassName('clear')[0];
-      clear.onclick = function(){
-        var container = document.getElementsByClassName('your-numbers')[0];
-        var inputs = container.getElementsByTagName('input')
-        for(var i = 0; i< inputs.length; i++){
-          inputs[i].value = '';
-        }
-        document.getElementById('get').value = '';
+      result.innerHTML = yourResult;
+    }
+
+    var clear = document.getElementsByClassName('clear')[0];
+    clear.onclick = function() {
+      var container = document.getElementsByClassName('your-numbers')[0];
+      var inputs = container.getElementsByTagName('input')
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
       }
-    </script>
-    <style>
-      .px, .em{
-        float:left;
-      }
-      .px{
-        margin-right:25px;
-      }
-      
-      .your-numbers:after{
-        display:table;
-        content:"";
-        clear:both;
-      }
-      #button{
-        display:block;
-        margin-top: 10px;
-      }
-      input[type="button"]{
-        display:block;
-        margin-top:20px;
-      }
-    </style>
-  </body>
+      document.getElementById('get').innerHTML = '';
+    }
+  </script>
+ 
+</body>
 
 </html>
